@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('ofertas', function (Blueprint $table) {
             $table->id();
+            $table->float("precio");
+            $table->string("descripcion");
+            $table->date("fecha_ini");
+            $table->date("fecha_fin");
+            $table->unsignedBigInteger("producto_id");
+            $table->foreign("producto_id")->references("id")->on("productos");
+
             $table->timestamps();
         });
     }

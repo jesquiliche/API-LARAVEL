@@ -19,7 +19,8 @@ return new class extends Migration
             $table->text("descripcion");
             $table->float("precio");
             $table->unsignedBigInteger("subcategoria_id");
-            $table->foreign("subcategoria_id")->references("id")->on("subcategorias");
+            $table->foreign("subcategoria_id"
+            )->references("id")->on("subcategorias");
             $table->unsignedBigInteger("iva_id");
             $table->foreign("iva_id")->references("id")->on("ivas");
             $table->unsignedBigInteger("marca_id");
