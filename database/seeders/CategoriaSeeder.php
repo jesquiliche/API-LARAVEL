@@ -17,20 +17,17 @@ class CategoriaSeeder extends Seeder
     {
         $data=[
             [
-                "nombre"=>"Neveras",
+                "nombre"=>"Electrodomesticos",
                 "descripcion"=>"Grandes electrodomesticos"
             ],
+           
             [
-                "nombre"=>"Pequeños electrodomesticos",
+                "nombre"=>"Televisión",
                 "descripcion"=>"Pequeños electrodomesticos"
             ],
             [
-                "nombre"=>"Televisores",
-                "descripcion"=>"Pequeños electrodomesticos"
-            ],
-            [
-                "nombre"=>"Moviles",
-                "descripcion"=>"Pequeños electrodomesticos"
+                "nombre"=>"Telefonía",
+                "descripcion"=>"Telefonía"
             ],
             [
                 "nombre"=>"Ordenadores",

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IvaSeeder::class);
         $this->call(CategoriaSeeder::class);
         $this->call(MarcaSeeder::class);
+        $this->call(SubcategoriaSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
