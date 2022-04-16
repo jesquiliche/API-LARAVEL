@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("nombre")->unique();
             $table->text("descripcion");
             $table->float("precio");
+            $table->text("imagen")->nullable();
             $table->unsignedBigInteger("subcategoria_id");
             $table->foreign("subcategoria_id"
             )->references("id")->on("subcategorias");
