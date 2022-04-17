@@ -76,6 +76,33 @@ class ProductoSeeder extends Seeder
                 "iva_id"=>3, 
                 "marca_id"=>1,//CANDY
             ],
+            [
+                "nombre"=>"Svan SVF143C",
+                "descripcion"=>"Frigorífico 2 puertas - SVAN Frigorífico 2 Puertas Svan SVF143C Blanco. Cíclico. Bajo nivel sonoro. Apertura tipo Uñero. A+/F, Cíclico, Blanco",
+                "precio"=>258,
+                "imagen"=>"freegorifico4.webp",
+                "subcategoria_id"=>1,
+                "iva_id"=>3, 
+                "marca_id"=>1,//SVAN
+            ],
+            [
+                "nombre"=>"Candy CMDDS 5142WN",
+                "descripcion"=>"Frigorífico dos puertas - Candy CMDDS 5142WN, 204l, Cíclico, 143cm, Puertas reversibles, LED, Blanco",
+                "precio"=>311,
+                "imagen"=>"frigorifixo4.webp",
+                "subcategoria_id"=>1,
+                "iva_id"=>3, 
+                "marca_id"=>1,//SVAN
+            ],
+            [
+                "nombre"=>"Indesit TIHA 17 V",
+                "descripcion"=>"Frigorífico dos puertas - Indesit TIHA 17 V, 300 L, Low Frost, 172 cm, Blanco",
+                "precio"=>459,
+                "imagen"=>"frigorifico6.webp",
+                "subcategoria_id"=>1,
+                "iva_id"=>3, 
+                "marca_id"=>1,//Indesit
+            ],
 
         ];
         DB::table('productos')->insert($data);
