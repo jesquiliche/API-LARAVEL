@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Controllers\Controller;
 use App\Models\Oferta;
-use App\Http\Requests\StoreOfertaRequest;
-use App\Http\Requests\UpdateOfertaRequest;
+use Illuminate\Http\Request;
 
 class OfertaController extends Controller
 {
@@ -19,22 +19,12 @@ class OfertaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreOfertaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOfertaRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,24 +41,13 @@ class OfertaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Oferta  $oferta
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Oferta $oferta)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateOfertaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateOfertaRequest $request, Oferta $oferta)
+    public function update(Request $request, Oferta $oferta)
     {
         //
     }

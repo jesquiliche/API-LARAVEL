@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Oferta extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'precio',
+        'descripcion',
+        'fecha_ini',
+        'fecha_fin',
+        'producto_id'
+    ];
 }
