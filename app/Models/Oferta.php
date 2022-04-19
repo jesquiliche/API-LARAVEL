@@ -15,4 +15,8 @@ class Oferta extends Model
         'fecha_fin',
         'producto_id'
     ];
+
+    function productos(){
+        return $this->hasMany('App\Models\Producto');    
+    }
 }

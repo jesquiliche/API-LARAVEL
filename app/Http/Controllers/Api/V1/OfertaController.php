@@ -16,6 +16,7 @@ class OfertaController extends Controller
     public function index()
     {
         //
+        return Oferta::all();
     }
 
     /**
@@ -27,6 +28,13 @@ class OfertaController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'precio'=>'required|max(999999.99)',
+            'fecha_ini'=>'required|date_format:d/m/Y',
+            'fecha_fin'=>'required|date_format:d/m/Y',
+            'product_id'=>'required'
+        ]);
+        $categoria=Oferta::create($request->all());
     }
 
     /**
@@ -35,9 +43,10 @@ class OfertaController extends Controller
      * @param  \App\Models\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function show(Oferta $oferta)
+    public function show($id)
     {
         //
+        return Oferta::find($id);
     }
 
     /**
@@ -47,9 +56,17 @@ class OfertaController extends Controller
      * @param  \App\Models\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Oferta $oferta)
+    public function update(Request $request,$id)
     {
         //
+        $request->validate([
+            'precio'=>'required|max(999999.99)',
+            'fecha_ini'=>'required|date_format:d/m/Y',
+            'fecha_fin'=>'required|date_format:d/m/Y',
+            'product_id'=>'required'
+        ]);
+        Oferta::findOrFail($id)->update($request->all());
+        return Oferta::findOrFail($id);
     }
 
     /**
@@ -58,8 +75,10 @@ class OfertaController extends Controller
      * @param  \App\Models\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Oferta $oferta)
+    public function destroy($id)
     {
         //
+        Oferta::destroy($id);
+        return "Oferta $id eliminada.";
     }
 }

@@ -30,4 +30,7 @@ class Producto extends Model
     public function marca(){
         return $this->belongsTo('App\Models\Marca');
     }
+    public function oferta(){
+        return $this->belongsTo('App\Models\Oferta');
+    }
 }

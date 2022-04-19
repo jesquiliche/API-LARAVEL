@@ -9,4 +9,9 @@ class Marca extends Model
 {
     protected $fillable = ['nombre'];
     use HasFactory;
+
+    function productos(){
+        return $this->hasMany('App\Models\Producto');    
+    }
+
 }

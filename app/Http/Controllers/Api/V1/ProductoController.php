@@ -16,6 +16,7 @@ class ProductoController extends Controller
     public function index()
     {
         //
+        return Producto::all();
     }
 
     /**
@@ -27,6 +28,19 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
+        $validaData=$request->validate([
+            'precio'=>'required',
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'subcategoria_id'=>'required',
+            'iva_id'=>'required',
+            'marce_id'=>'required'
+        ]);
+
+      
+        $producto=Producto::create($validaData);
+        return $producto;
+       
     }
 
     /**
@@ -35,9 +49,10 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
         //
+        return Producto::findOrFail($id);
     }
 
     /**

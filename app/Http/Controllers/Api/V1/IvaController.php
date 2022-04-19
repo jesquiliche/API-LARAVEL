@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Iva;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+//use Illuminate\Validation\Validator;
 
 class IvaController extends Controller
 {
@@ -16,6 +19,7 @@ class IvaController extends Controller
     public function index()
     {
         //
+        return Iva::all();
     }
 
     /**
@@ -27,6 +31,16 @@ class IvaController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|unique:ivas|max:150',
+            'tanto_porciento' => 'required',
+        ]);
+        
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        $iva=Iva::create($request->all());
+        return $iva;
     }
 
     /**
@@ -35,9 +49,11 @@ class IvaController extends Controller
      * @param  \App\Models\Iva  $iva
      * @return \Illuminate\Http\Response
      */
-    public function show(Iva $iva)
+    public function show($id)
     {
         //
+        return Iva::findOrFail($id);
+    
     }
 
     /**
@@ -47,9 +63,11 @@ class IvaController extends Controller
      * @param  \App\Models\Iva  $iva
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Iva $iva)
+    public function update(Request $request, $id)
     {
         //
+        $iva=Iva::findOrFail($id)->update($request->all());
+        return $iva;
     }
 
     /**
@@ -58,8 +76,10 @@ class IvaController extends Controller
      * @param  \App\Models\Iva  $iva
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Iva $iva)
+    public function destroy($id)
     {
         //
+        Iva::destroy($id);
+        return "Iva $id eliminado.";
     }
 }
