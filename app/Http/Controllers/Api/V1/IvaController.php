@@ -7,7 +7,7 @@ use App\Models\Iva;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-//use Illuminate\Validation\Validator;
+
 
 class IvaController extends Controller
 {
@@ -35,7 +35,6 @@ class IvaController extends Controller
             'nombre' => 'required|unique:ivas|max:150',
             'tanto_porciento' => 'required',
         ]);
-        
         if($validator->fails()){
             return response()->json($validator->errors(),422); 
         }
