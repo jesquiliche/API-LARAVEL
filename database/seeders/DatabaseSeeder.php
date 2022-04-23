@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(MarcaSeeder::class);
         $this->call(SubcategoriaSeeder::class);
         $this->call(ProductoSeeder::class);
-        // \App\Models\User::factory(10)->create();
+        $this->call(ProvinciaSeeder::class);
+        $this->call(PoblacionSeeder::class);
+    
+
     }
 }

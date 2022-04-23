@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('poblaciones', function (Blueprint $table) {
             $table->id();
-            $table->string("codigo",2)->unique();
+            $table->string("codigo",5)->unique();
             $table->string("nombre");
+            $table->string("provincia_cod",2);
+            $table->foreign("provincia_cod")->references("codigo")->on("provincias");
             $table->timestamps();
         });
     }
