@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("cod_postal",5);
             $table->string("calle");
             $table->integer("numero");
-            $table->text("notas");
+            $table->text("notas")->nullable();
             $table->timestamps();
         });
     }
