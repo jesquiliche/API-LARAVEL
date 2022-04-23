@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provincia extends Model
 {
+    protected $fillable = [
+        'codigo',
+        'nombre'
+       
+    ];
     use HasFactory;
 }

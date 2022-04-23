@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Poblacion extends Model
 {
     protected $table="poblaciones";
+    protected $fillable = ['codigo','nombre'];
     use HasFactory;
 }
