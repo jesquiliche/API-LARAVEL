@@ -33,4 +33,8 @@ class Producto extends Model
     public function oferta(){
         return $this->belongsTo('App\Models\Oferta');
     }
+    //Relacion muchos a muchos
+    public function proveedores(){
+        return $this->belongsToMany(Producto::class);
+    }
 }
