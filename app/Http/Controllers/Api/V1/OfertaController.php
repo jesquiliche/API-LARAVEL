@@ -38,6 +38,7 @@ class OfertaController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors(),422); 
         }
+    
         Oferta::create($request->all());
         return $request->all();
     }

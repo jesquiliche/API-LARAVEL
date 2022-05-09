@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
 {
@@ -28,19 +29,19 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
-        $validaData=$request->validate([
+       
+        $validator = Validator::make($request->all(), [
             'precio'=>'required',
             'nombre'=>'required',
             'descripcion'=>'required',
             'subcategoria_id'=>'required',
             'iva_id'=>'required',
-            'marce_id'=>'required'
-        ]);
-
-      
-        $producto=Producto::create($validaData);
-        return $producto;
-       
+            'marce_id'=>'required']);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        Producto::create($request->all());
+        return $request->all();
     }
 
     /**
@@ -62,9 +63,22 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'precio'=>'required',
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'subcategoria_id'=>'required',
+            'iva_id'=>'required',
+            'marce_id'=>'required'       ]);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        Producto::findOrFail($id)->update($request->all());
+        return $request->all();
+
     }
 
     /**
@@ -73,8 +87,10 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
         //
+        Producto::destroy($id);
+        return "Producto $id eliminado.";
     }
 }

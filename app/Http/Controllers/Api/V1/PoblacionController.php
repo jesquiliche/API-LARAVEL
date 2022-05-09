@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Poblacion;
 use Illuminate\Http\Request;
 
+
 class PoblacionController extends Controller
 {
     /**
@@ -16,6 +17,7 @@ class PoblacionController extends Controller
     public function index()
     {
         //
+        return Poblacion::all();
     }
 
     /**

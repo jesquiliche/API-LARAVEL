@@ -22,3 +22,4 @@ Route::apiResource('v1/categorias', App\Http\Controllers\Api\V1\CategoriaControl
 Route::apiResource('v1/ivas', App\Http\Controllers\Api\V1\IvaController::class);
 Route::apiResource('v1/productos', App\Http\Controllers\Api\V1\ProductoController::class);
 Route::apiResource('v1/ofertas', App\Http\Controllers\Api\V1\OfertaController::class);
+Route::apiResource('v1/poblaciones', App\Http\Controllers\Api\V1\PoblacionController::class);

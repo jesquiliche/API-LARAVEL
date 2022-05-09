@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Subcategoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SubcategoriaController extends Controller
 {
@@ -16,6 +17,7 @@ class SubcategoriaController extends Controller
     public function index()
     {
         //
+        Subcategoria::all();
     }
 
     /**
@@ -27,6 +29,17 @@ class SubcategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'nombre'=>'required|max:150',
+            'descripcion'=>'required',
+            'subcategoria_id'=>'required',
+            'categoria_id'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        Subcategoria::create($request->all());
+        return $request->all();
     }
 
     /**
