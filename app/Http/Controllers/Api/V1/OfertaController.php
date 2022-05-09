@@ -49,7 +49,7 @@ class OfertaController extends Controller
         $oferta->fecha_fin=DateTime::createFromFormat('d-m-Y',$request->fecha_fin)->format('d-m-y');
         $oferta->producto_id=$request->producto_id;
         $oferta->save();
-        return $request->all();
+        return $oferta;
     }
 
     /**
@@ -74,13 +74,25 @@ class OfertaController extends Controller
     public function update(Request $request,$id)
     {
         //
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'precio'=>'required',
-            'fecha_ini'=>'required|date_format:d/m/Y',
-            'fecha_fin'=>'required|date_format:d/m/Y',
-            'product_id'=>'required'
+            'descripcion'=>'required',
+            'fecha_ini'=>'required|date_format:d-m-Y',
+            'fecha_fin'=>'required|date_format:d-m-Y',
+            'producto_id'=>'required'
         ]);
-
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        
+        $oferta=Oferta::find($id);
+        $oferta->precio=$request->precio;
+        $oferta->descripcion=$request->descripcion;
+        $oferta->fecha_ini=DateTime::createFromFormat('d-m-Y',$request->fecha_ini)->format('d-m-y');
+        $oferta->fecha_fin=DateTime::createFromFormat('d-m-Y',$request->fecha_fin)->format('d-m-y');
+        $oferta->producto_id=$request->producto_id;
+        $oferta->save();
+        return $oferta;
         Oferta::findOrFail($id)->update($request->all());
         return Oferta::findOrFail($id);
     }
