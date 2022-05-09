@@ -50,6 +50,7 @@ class CategoriaController extends Controller
     public function show($id)
     {
         //
+        
         $categoria= Categoria::findOrFail($id);
         return $categoria;
     }
@@ -64,8 +65,16 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|unique:categorias|max:150',
+            'descripcion' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+      
         $categoria=Categoria::findOrFail($id)->update($request->all());
-        return $categoria;
+        return $request->all();
     }
 
     /**

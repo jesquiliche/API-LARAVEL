@@ -65,8 +65,15 @@ class IvaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|unique:ivas|max:150',
+            'tanto_porciento' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
         $iva=Iva::findOrFail($id)->update($request->all());
-        return $iva;
+        return $request->all();
     }
 
     /**

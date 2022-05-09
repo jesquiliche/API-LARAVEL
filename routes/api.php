@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('v1/categorias', App\Http\Controllers\Api\V1\CategoriaController::class)->middleware('api');
 Route::apiResource('v1/ivas', App\Http\Controllers\Api\V1\IvaController::class);
 Route::apiResource('v1/productos', App\Http\Controllers\Api\V1\ProductoController::class);
+Route::apiResource('v1/ofertas', App\Http\Controllers\Api\V1\OfertaController::class);

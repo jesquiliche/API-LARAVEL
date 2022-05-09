@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Marca;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MarcaController extends Controller
 {
@@ -28,10 +29,14 @@ class MarcaController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'nombre'=>'required|max:150'
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|unique:ivas|max:150'
         ]);
-        $categoria=Marca::create($request->all());
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        Marca::create($request->all());
+        return $request->all();
     
     }
 
@@ -57,8 +62,14 @@ class MarcaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $iva=Marca::findOrFail($id)->update($request->all());
-        return $iva;
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|unique:ivas|max:150'
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        Marca::findOrFail($id)->update($request->all());
+        return $request->all();
     }
 
     /**

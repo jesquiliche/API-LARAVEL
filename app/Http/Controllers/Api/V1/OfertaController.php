@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Oferta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OfertaController extends Controller
 {
@@ -28,13 +29,17 @@ class OfertaController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'precio'=>'required|max(999999.99)',
+        $validator = Validator::make($request->all(), [
+            'precio'=>'required',
             'fecha_ini'=>'required|date_format:d/m/Y',
             'fecha_fin'=>'required|date_format:d/m/Y',
             'product_id'=>'required'
         ]);
-        $categoria=Oferta::create($request->all());
+        if($validator->fails()){
+            return response()->json($validator->errors(),422); 
+        }
+        Oferta::create($request->all());
+        return $request->all();
     }
 
     /**
