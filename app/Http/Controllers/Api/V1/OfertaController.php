@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Oferta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use \DateTime;
 
 class OfertaController extends Controller
 {
@@ -31,15 +32,23 @@ class OfertaController extends Controller
         //
         $validator = Validator::make($request->all(), [
             'precio'=>'required',
-            'fecha_ini'=>'required|date_format:d/m/Y',
-            'fecha_fin'=>'required|date_format:d/m/Y',
-            'product_id'=>'required'
+            'descripcion'=>'required',
+            'fecha_ini'=>'required|date_format:d-m-Y',
+            'fecha_fin'=>'required|date_format:d-m-Y',
+            'producto_id'=>'required'
         ]);
         if($validator->fails()){
             return response()->json($validator->errors(),422); 
         }
-    
-        Oferta::create($request->all());
+        
+        
+        $oferta=new Oferta();
+        $oferta->precio=$request->precio;
+        $oferta->descripcion=$request->descripcion;
+        $oferta->fecha_ini=DateTime::createFromFormat('d-m-Y',$request->fecha_ini)->format('d-m-y');
+        $oferta->fecha_fin=DateTime::createFromFormat('d-m-Y',$request->fecha_fin)->format('d-m-y');
+        $oferta->producto_id=$request->producto_id;
+        $oferta->save();
         return $request->all();
     }
 
@@ -66,11 +75,12 @@ class OfertaController extends Controller
     {
         //
         $request->validate([
-            'precio'=>'required|max(999999.99)',
+            'precio'=>'required',
             'fecha_ini'=>'required|date_format:d/m/Y',
             'fecha_fin'=>'required|date_format:d/m/Y',
             'product_id'=>'required'
         ]);
+
         Oferta::findOrFail($id)->update($request->all());
         return Oferta::findOrFail($id);
     }
