@@ -17,7 +17,8 @@ class PoblacionController extends Controller
     public function index()
     {
         //
-        return Poblacion::all();
+        
+        return Poblacion::all()->skip(1000)->take(20);
     }
 
     /**

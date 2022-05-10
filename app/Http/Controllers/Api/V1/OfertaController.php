@@ -93,8 +93,6 @@ class OfertaController extends Controller
         $oferta->producto_id=$request->producto_id;
         $oferta->save();
         return $oferta;
-        Oferta::findOrFail($id)->update($request->all());
-        return Oferta::findOrFail($id);
     }
 
     /**
